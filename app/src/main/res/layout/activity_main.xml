@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app_surface">
+
+    <ScrollView
+        android:id="@+id/loginScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/ic_runna_wave" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Runna"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Welcome back! Ready to run?"
+                android:textColor="@color/runna_text_secondary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:text="Email *"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/loginEmailInput"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:hint="your@email.com"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary"
+                android:textColorHint="@color/runna_text_secondary"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Password *"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/loginPasswordInput"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:hint="Enter your password"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary"
+                android:textColorHint="@color/runna_text_secondary"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/forgotPasswordText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="14dp"
+                android:text="Forgot password?"
+                android:textColor="@color/runna_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/showRegisterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="Don't have an account? Register"
+                android:textAlignment="center"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/registerScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <ImageView
+                android:id="@+id/backToLoginButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="Create Account"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Start your running journey"
+                android:textColor="@color/runna_text_secondary" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/bg_input"
+                android:hint="Your Name"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_input"
+                android:hint="your@email.com"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_input"
+                android:hint="Create a password"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_input"
+                android:hint="Confirm your password"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary" />
+
+            <Button
+                android:id="@+id/createAccountButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="26dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Create Account"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/appScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:id="@+id/homeScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:id="@+id/homeWelcomeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome back, Nghi"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="34sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/homeSubtitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Ready for your next run?"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/homeStartRunningButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_button_primary"
+                        android:text="Start Running"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="118dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_subtle"
+                            android:gravity="center"
+                            android:text="12.5 km\nTotal Distance"
+                            android:textAlignment="center"
+                            android:textColor="@color/runna_text_primary"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="118dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_subtle"
+                            android:gravity="center"
+                            android:text="5:32\nAvg Pace"
+                            android:textAlignment="center"
+                            android:textColor="@color/runna_text_primary"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/recentActivityText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="22dp"
+                        android:text="Recent Activity\nEasy Run | 5.2 km | 28:45\nLong Run | 10.0 km | 58:30"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/startScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Running"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Choose your workout type"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/typeEasy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Easy Run\nLight pace, comfortable breathing"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/typeLong"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Long Run\nExtended distance at steady pace"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/typeInterval"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Interval\nHigh intensity with rest periods"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/typeWalking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Walking\nCasual walk or recovery"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/beginRunButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/bg_button_primary"
+                        android:text="Start Run"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/historyScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Run History"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="March 2026"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Easy Run\n5.2 km | 28:45 | Pace 5:32"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Long Run\n10.0 km | 58:30 | Pace 5:51"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/profileScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Manage your personal running details"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/profileInfoText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="22dp"
+                        android:text="Nghi\nnghi@gmail.com\nAge 19 | Female\nHeight 165 cm | Weight 62 kg"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/editProfileButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Edit Profile"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/appInfoButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="App Information"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/logoutButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_card_subtle"
+                        android:padding="20dp"
+                        android:text="Logout"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:background="@drawable/bg_nav"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Home" android:textColor="@color/runna_primary" />
+            <TextView android:id="@+id/navStart" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Start" android:textColor="@color/runna_text_secondary" />
+            <TextView android:id="@+id/navHistory" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="History" android:textColor="@color/runna_text_secondary" />
+            <TextView android:id="@+id/navProfile" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Profile" android:textColor="@color/runna_text_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trackingScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/runTypeChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="22dp"
+            android:background="@drawable/bg_chip_soft"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="8dp"
+            android:text="Easy" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginHorizontal="22dp"
+            android:background="@drawable/bg_tracking_header"
+            android:gravity="center"
+            android:text="Live Route Map\nMap placeholder for GPS polyline preview"
+            android:textAlignment="center"
+            android:textColor="@color/runna_text_primary" />
+
+        <TextView
+            android:id="@+id/trackingTimerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="00:02"
+            android:textColor="@color/runna_text_primary"
+            android:textSize="42sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/trackingStatsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="0.10 km | 5:32 pace | 6 cal"
+            android:textColor="@color/runna_text_secondary" />
+
+        <Button
+            android:id="@+id/pauseRunButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_button_primary"
+            android:text="Pause"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pauseOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/runna_overlay"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="22dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Run Paused"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pauseStatsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_soft"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="28:45 | 5.2 km | 5:32 pace"
+                android:textColor="@color/runna_text_primary" />
+
+            <Button
+                android:id="@+id/resumeRunButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Resume"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/finishRunButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_button_outline"
+                android:text="Finish Run"
+                android:textAllCaps="false"
+                android:textColor="@color/runna_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/summaryScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app_surface"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="22dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/bg_summary_header"
+            android:gravity="center"
+            android:text="Great Job!\nYou completed your run"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/summaryStatsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center"
+            android:padding="22dp"
+            android:text="Duration 28:45\nDistance 5.2 km\nAvg Pace 5:32\nCalories 338"
+            android:textAlignment="center"
+            android:textColor="@color/runna_text_primary" />
+
+        <Button
+            android:id="@+id/summaryDoneButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_button_primary"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/forgotPasswordOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/runna_overlay"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="22dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reset Password"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Enter your email to receive a reset link."
+                android:textColor="@color/runna_text_secondary"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/forgotPasswordEmailInput"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_input"
+                android:hint="your@email.com"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/sendResetButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Send Reset Link"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/closeForgotPasswordButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_outline"
+                android:text="Close"
+                android:textAllCaps="false"
+                android:textColor="@color/runna_primary"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editProfileOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/runna_overlay"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="22dp"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_bottom_sheet"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Profile"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editNameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Name"
+                    android:paddingHorizontal="16dp"
+                    android:text="Nghi"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/editEmailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Email"
+                    android:paddingHorizontal="16dp"
+                    android:text="nghi@gmail.com"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/editAgeInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Age"
+                    android:paddingHorizontal="16dp"
+                    android:text="19"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/editGenderInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Gender"
+                    android:paddingHorizontal="16dp"
+                    android:text="Female"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/editHeightInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Height (cm)"
+                    android:paddingHorizontal="16dp"
+                    android:text="165"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/editWeightInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Weight (kg)"
+                    android:paddingHorizontal="16dp"
+                    android:text="62"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/saveProfileButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="Save Changes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/cancelEditProfileButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_button_outline"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/runna_primary"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/appInfoOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/runna_overlay"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="22dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_sheet"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="App Information"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_soft"
+                android:padding="18dp"
+                android:text="Runna build by nghi "
+                android:textColor="@color/runna_text_primary"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/closeAppInfoButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Close"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

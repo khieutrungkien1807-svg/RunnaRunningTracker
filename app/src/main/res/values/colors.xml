@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="runna_primary">#FF6D3D</color>
+    <color name="runna_primary_dark">#F25824</color>
+    <color name="runna_primary_soft">#FFF2EC</color>
+    <color name="runna_surface">#FFF7F4</color>
+    <color name="runna_surface_alt">#FFF2EF</color>
+    <color name="runna_card">#FFFFFFFF</color>
+    <color name="runna_text_primary">#14213D</color>
+    <color name="runna_text_secondary">#6C7A96</color>
+    <color name="runna_stroke">#E7EAF0</color>
+    <color name="runna_success">#19A55A</color>
+    <color name="runna_blue_soft">#E8F0FF</color>
+    <color name="runna_blue">#4F7CFF</color>
+    <color name="runna_purple_soft">#F2E8FF</color>
+    <color name="runna_purple">#A35EFF</color>
+    <color name="runna_red_soft">#FFE8EA</color>
+    <color name="runna_red">#FF5D6C</color>
+    <color name="runna_green_soft">#E6F9EA</color>
+    <color name="runna_green">#20A55B</color>
+    <color name="runna_overlay">#800F172A</color>
+</resources>
