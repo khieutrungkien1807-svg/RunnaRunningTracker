@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.runna_runningtracker" />
+                  <option name="mobileSdkAppId" value="1:630780883402:android:2f7f71d7ca9f3df22a1f33" />
+                  <option name="projectId" value="runna-b6056" />
+                  <option name="projectNumber" value="630780883402" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -16,11 +16,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var loginScreen: android.view.View
     private lateinit var registerScreen: android.view.View
+    private lateinit var personalInfoScreen: android.view.View
     private lateinit var appScreen: android.view.View
     private lateinit var trackingScreen: android.view.View
     private lateinit var pauseOverlay: android.view.View
@@ -54,6 +57,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recentActivityText: TextView
     private lateinit var showRegisterText: TextView
 
+    private lateinit var registerNameInput: EditText
+    private lateinit var registerEmailInput: EditText
+    private lateinit var registerPasswordInput: EditText
+    private lateinit var registerConfirmPasswordInput: EditText
+    private lateinit var personalNameInput: EditText
+    private lateinit var personalEmailInput: EditText
+    private lateinit var personalAgeInput: EditText
+    private lateinit var personalGenderInput: EditText
+    private lateinit var personalHeightInput: EditText
+    private lateinit var personalWeightInput: EditText
     private lateinit var editNameInput: EditText
     private lateinit var editEmailInput: EditText
     private lateinit var editAgeInput: EditText
@@ -61,9 +74,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editHeightInput: EditText
     private lateinit var editWeightInput: EditText
 
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
     private val timerHandler = Handler(Looper.getMainLooper())
     private var elapsedSeconds = 2
     private var selectedRunType = "Easy"
+    private var pendingRegisterUid: String? = null
     private var profileName = "Nghi"
     private var profileEmail = "nghi@gmail.com"
     private var profileAge = "19"
@@ -102,11 +118,15 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
         bindViews()
         styleInlineRegisterText()
         bindActions()
+        testFirebaseConnection()
         selectSection(Section.HOME)
         selectRunType("Easy")
+        checkExistingSession()
     }
 
     override fun onDestroy() {
@@ -117,6 +137,7 @@ class MainActivity : AppCompatActivity() {
     private fun bindViews() {
         loginScreen = findViewById(R.id.loginScreen)
         registerScreen = findViewById(R.id.registerScreen)
+        personalInfoScreen = findViewById(R.id.personalInfoScreen)
         appScreen = findViewById(R.id.appScreen)
         trackingScreen = findViewById(R.id.trackingScreen)
         pauseOverlay = findViewById(R.id.pauseOverlay)
@@ -150,6 +171,16 @@ class MainActivity : AppCompatActivity() {
         recentActivityText = findViewById(R.id.recentActivityText)
         showRegisterText = findViewById(R.id.showRegisterText)
 
+        registerNameInput = findViewById(R.id.registerNameInput)
+        registerEmailInput = findViewById(R.id.registerEmailInput)
+        registerPasswordInput = findViewById(R.id.registerPasswordInput)
+        registerConfirmPasswordInput = findViewById(R.id.registerConfirmPasswordInput)
+        personalNameInput = findViewById(R.id.personalNameInput)
+        personalEmailInput = findViewById(R.id.personalEmailInput)
+        personalAgeInput = findViewById(R.id.personalAgeInput)
+        personalGenderInput = findViewById(R.id.personalGenderInput)
+        personalHeightInput = findViewById(R.id.personalHeightInput)
+        personalWeightInput = findViewById(R.id.personalWeightInput)
         editNameInput = findViewById(R.id.editNameInput)
         editEmailInput = findViewById(R.id.editEmailInput)
         editAgeInput = findViewById(R.id.editAgeInput)
@@ -173,30 +204,31 @@ class MainActivity : AppCompatActivity() {
             forgotPasswordOverlay.visibility = View.VISIBLE
         }
 
-        findViewById<Button>(R.id.closeForgotPasswordButton).setOnClickListener {
-            forgotPasswordOverlay.visibility = View.GONE
-        }
-
         findViewById<Button>(R.id.sendResetButton).setOnClickListener {
-            forgotPasswordOverlay.visibility = View.GONE
-            Toast.makeText(this, "Reset link sent to email", Toast.LENGTH_SHORT).show()
+            handleForgotPassword()
         }
 
         findViewById<Button>(R.id.loginButton).setOnClickListener {
-            openMainApp()
+            handleLogin()
         }
 
         findViewById<Button>(R.id.createAccountButton).setOnClickListener {
-            openMainApp()
+            handleRegister()
+        }
+
+        findViewById<Button>(R.id.completeProfileButton).setOnClickListener {
+            completePersonalInfo()
         }
 
         findViewById<TextView>(R.id.logoutButton).setOnClickListener {
             timerHandler.removeCallbacks(timerRunnable)
+            auth.signOut()
             appScreen.visibility = View.GONE
             trackingScreen.visibility = View.GONE
             summaryScreen.visibility = View.GONE
             pauseOverlay.visibility = View.GONE
             registerScreen.visibility = View.GONE
+            personalInfoScreen.visibility = View.GONE
             editProfileOverlay.visibility = View.GONE
             appInfoOverlay.visibility = View.GONE
             loginScreen.visibility = View.VISIBLE
@@ -207,10 +239,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.editProfileButton).setOnClickListener {
             fillEditProfileForm()
             editProfileOverlay.visibility = View.VISIBLE
-        }
-
-        findViewById<Button>(R.id.cancelEditProfileButton).setOnClickListener {
-            editProfileOverlay.visibility = View.GONE
         }
 
         findViewById<Button>(R.id.saveProfileButton).setOnClickListener {
@@ -278,6 +306,7 @@ class MainActivity : AppCompatActivity() {
     private fun openMainApp() {
         loginScreen.visibility = View.GONE
         registerScreen.visibility = View.GONE
+        personalInfoScreen.visibility = View.GONE
         trackingScreen.visibility = View.GONE
         pauseOverlay.visibility = View.GONE
         forgotPasswordOverlay.visibility = View.GONE
@@ -287,6 +316,15 @@ class MainActivity : AppCompatActivity() {
         appScreen.visibility = View.VISIBLE
         refreshProfileUi()
         selectSection(Section.HOME)
+    }
+
+    private fun checkExistingSession() {
+        val currentUser = auth.currentUser ?: return
+        loginScreen.visibility = View.GONE
+        registerScreen.visibility = View.GONE
+        personalInfoScreen.visibility = View.GONE
+        openMainApp()
+        loadUserProfile(currentUser.uid)
     }
 
     private fun selectSection(section: Section) {
@@ -338,9 +376,24 @@ class MainActivity : AppCompatActivity() {
         profileGender = editGenderInput.text.toString().ifBlank { profileGender }
         profileHeight = editHeightInput.text.toString().ifBlank { profileHeight }
         profileWeight = editWeightInput.text.toString().ifBlank { profileWeight }
-        refreshProfileUi()
-        editProfileOverlay.visibility = View.GONE
-        Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+        val uid = auth.currentUser?.uid
+        if (uid == null) {
+            refreshProfileUi()
+            editProfileOverlay.visibility = View.GONE
+            Toast.makeText(this, "Profile updated locally", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        firestore.collection("users").document(uid)
+            .set(buildUserMap(), com.google.firebase.firestore.SetOptions.merge())
+            .addOnSuccessListener {
+                refreshProfileUi()
+                editProfileOverlay.visibility = View.GONE
+                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Update failed: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun refreshProfileUi() {
@@ -363,6 +416,178 @@ class MainActivity : AppCompatActivity() {
             )
         }
         showRegisterText.text = spannable
+    }
+
+    private fun testFirebaseConnection() {
+        FirebaseAuth.getInstance()
+    }
+
+    private fun handleLogin() {
+        val email = findViewById<EditText>(R.id.loginEmailInput).text.toString().trim()
+        val password = findViewById<EditText>(R.id.loginPasswordInput).text.toString().trim()
+
+        if (email.isBlank() || password.isBlank()) {
+            Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnSuccessListener { result ->
+                openMainApp()
+                loadUserProfile(result.user?.uid)
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Login failed: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun handleRegister() {
+        val name = registerNameInput.text.toString().trim()
+        val email = registerEmailInput.text.toString().trim()
+        val password = registerPasswordInput.text.toString().trim()
+        val confirmPassword = registerConfirmPasswordInput.text.toString().trim()
+
+        if (name.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+            Toast.makeText(this, "Please fill all register fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.length < 6) {
+            Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password != confirmPassword) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener { result ->
+                profileName = name
+                profileEmail = email
+                pendingRegisterUid = result.user?.uid
+                showPersonalInfoScreen(name, email)
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Register failed: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun handleForgotPassword() {
+        val resetEmail = findViewById<EditText>(R.id.forgotPasswordEmailInput).text.toString().trim()
+
+        if (resetEmail.isBlank()) {
+            Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        auth.sendPasswordResetEmail(resetEmail)
+            .addOnSuccessListener {
+                forgotPasswordOverlay.visibility = View.GONE
+                Toast.makeText(this, "Reset link sent to email", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Reset failed: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun createUserProfile(uid: String?, email: String, name: String) {
+        if (uid == null) {
+            Toast.makeText(this, "User ID not found", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val userProfile = hashMapOf(
+            "name" to name,
+            "email" to email,
+            "age" to profileAge,
+            "gender" to profileGender,
+            "height" to profileHeight,
+            "weight" to profileWeight
+        )
+
+        firestore.collection("users").document(uid)
+            .set(userProfile)
+            .addOnSuccessListener {
+                openMainApp()
+                loadUserProfile(uid)
+                clearRegisterFields()
+                Toast.makeText(this, "Register successful", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Profile save failed: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun loadUserProfile(uid: String?) {
+        if (uid == null) return
+
+        firestore.collection("users").document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                if (!document.exists()) return@addOnSuccessListener
+
+                profileName = document.getString("name") ?: profileName
+                profileEmail = document.getString("email") ?: profileEmail
+                profileAge = document.getString("age") ?: profileAge
+                profileGender = document.getString("gender") ?: profileGender
+                profileHeight = document.getString("height") ?: profileHeight
+                profileWeight = document.getString("weight") ?: profileWeight
+                refreshProfileUi()
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Load profile failed: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun buildUserMap(): Map<String, String> {
+        return mapOf(
+            "name" to profileName,
+            "email" to profileEmail,
+            "age" to profileAge,
+            "gender" to profileGender,
+            "height" to profileHeight,
+            "weight" to profileWeight
+        )
+    }
+
+    private fun clearRegisterFields() {
+        registerNameInput.setText("")
+        registerEmailInput.setText("")
+        registerPasswordInput.setText("")
+        registerConfirmPasswordInput.setText("")
+    }
+
+    private fun showPersonalInfoScreen(name: String, email: String) {
+        loginScreen.visibility = View.GONE
+        registerScreen.visibility = View.GONE
+        personalInfoScreen.visibility = View.VISIBLE
+        personalNameInput.setText(name)
+        personalEmailInput.setText(email)
+        personalAgeInput.setText(profileAge)
+        personalGenderInput.setText(profileGender)
+        personalHeightInput.setText(profileHeight)
+        personalWeightInput.setText(profileWeight)
+    }
+
+    private fun completePersonalInfo() {
+        val uid = pendingRegisterUid ?: auth.currentUser?.uid
+        if (uid == null) {
+            Toast.makeText(this, "Please register first", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        profileName = personalNameInput.text.toString().trim().ifBlank { profileName }
+        profileEmail = personalEmailInput.text.toString().trim().ifBlank { profileEmail }
+        profileAge = personalAgeInput.text.toString().trim().ifBlank { profileAge }
+        profileGender = personalGenderInput.text.toString().trim().ifBlank { profileGender }
+        profileHeight = personalHeightInput.text.toString().trim().ifBlank { profileHeight }
+        profileWeight = personalWeightInput.text.toString().trim().ifBlank { profileWeight }
+
+        createUserProfile(uid, profileEmail, profileName)
+        pendingRegisterUid = null
     }
 
     private enum class Section {
