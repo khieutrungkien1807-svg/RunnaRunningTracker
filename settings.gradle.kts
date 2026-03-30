@@ -1,12 +1,7 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        // De Google repo mo hoan toan cho plugin Android/Firebase resolve on dinh hon tren may khac.
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
