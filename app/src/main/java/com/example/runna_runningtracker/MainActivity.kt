@@ -211,6 +211,7 @@ class MainActivity : AppCompatActivity() {
 
         // Mo popup quen mat khau.
         findViewById<TextView>(R.id.forgotPasswordText).setOnClickListener {
+            loginScreen.visibility = View.GONE
             forgotPasswordOverlay.visibility = View.VISIBLE
         }
 
@@ -248,6 +249,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.editProfileButton).setOnClickListener {
             fillEditProfileForm()
+            appScreen.visibility = View.GONE
             editProfileOverlay.visibility = View.VISIBLE
         }
 
@@ -256,11 +258,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.appInfoButton).setOnClickListener {
+            appScreen.visibility = View.GONE
             appInfoOverlay.visibility = View.VISIBLE
         }
 
         findViewById<Button>(R.id.closeAppInfoButton).setOnClickListener {
             appInfoOverlay.visibility = View.GONE
+            appScreen.visibility = View.VISIBLE
+            selectSection(Section.PROFILE)
         }
 
         navHome.setOnClickListener { selectSection(Section.HOME) }
@@ -291,11 +296,13 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.pauseRunButton).setOnClickListener {
             timerHandler.removeCallbacks(timerRunnable)
+            trackingScreen.visibility = View.GONE
             pauseOverlay.visibility = View.VISIBLE
         }
 
         findViewById<Button>(R.id.resumeRunButton).setOnClickListener {
             pauseOverlay.visibility = View.GONE
+            trackingScreen.visibility = View.VISIBLE
             timerHandler.post(timerRunnable)
         }
 
@@ -399,6 +406,8 @@ class MainActivity : AppCompatActivity() {
             // Truong hop local/demo: van cho update UI du chua co user Firebase.
             refreshProfileUi()
             editProfileOverlay.visibility = View.GONE
+            appScreen.visibility = View.VISIBLE
+            selectSection(Section.PROFILE)
             Toast.makeText(this, getString(R.string.profile_updated_locally), Toast.LENGTH_SHORT).show()
             return
         }
@@ -408,6 +417,8 @@ class MainActivity : AppCompatActivity() {
             onSuccess = {
                 refreshProfileUi()
                 editProfileOverlay.visibility = View.GONE
+                appScreen.visibility = View.VISIBLE
+                selectSection(Section.PROFILE)
                 Toast.makeText(this, getString(R.string.profile_updated), Toast.LENGTH_SHORT).show()
             },
             onFailure = { error ->
@@ -522,6 +533,7 @@ class MainActivity : AppCompatActivity() {
             email = resetEmail,
             onSuccess = {
                 forgotPasswordOverlay.visibility = View.GONE
+                loginScreen.visibility = View.VISIBLE
                 Toast.makeText(this, getString(R.string.reset_link_sent), Toast.LENGTH_SHORT).show()
             },
             onFailure = { error ->
@@ -621,4 +633,3 @@ class MainActivity : AppCompatActivity() {
         HOME, START, HISTORY, PROFILE
     }
 }
-
