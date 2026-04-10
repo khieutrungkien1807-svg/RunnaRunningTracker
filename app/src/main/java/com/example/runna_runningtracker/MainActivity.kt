@@ -28,7 +28,7 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
-    // Nhom view chinh: moi man trong prototype dang duoc mo/tat bang visibility.
+
     private lateinit var loginScreen: android.view.View
     private lateinit var registerScreen: android.view.View
     private lateinit var personalInfoScreen: android.view.View
@@ -91,10 +91,10 @@ class MainActivity : AppCompatActivity() {
     private var elapsedSeconds = 2
     private var selectedRunType = ""
 
-    // Luu tam uid vua register xong de buoc sau ghi them profile vao Firestore.
+
     private var pendingRegisterUid: String? = null
 
-    // currentUser la nguon du lieu profile hien tai dang hien tren UI.
+
     private var currentUser = User(
         name = "Nghi",
         email = "nghi@gmail.com",
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 
     private val timerRunnable = object : Runnable {
         override fun run() {
-            // Day la timer demo cho Member 3/4 thay flow tracking hien tai.
+
             elapsedSeconds += 1
             val minutes = elapsedSeconds / 60
             val seconds = elapsedSeconds % 60
@@ -386,7 +386,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectRunType(type: String) {
-        // Luu loai bai tap dang chon de sau nay Member 3/4 co the noi voi session that.
         selectedRunType = type
         beginRunButton.text = getString(R.string.start_type_format, type)
         styleRunType(typeEasy, type == getString(R.string.run_type_easy))
@@ -406,7 +405,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fillEditProfileForm() {
-        // Khi mo popup edit, do du lieu hien tai len form truoc.
+
         editNameInput.setText(currentUser.name)
         editEmailInput.setText(currentUser.email)
         editAgeInput.setText(currentUser.birthDate)
@@ -416,7 +415,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveProfile() {
-        // Lay du lieu moi tu form, neu o nao de trong thi giu gia tri cu.
+
         currentUser = currentUser.copy(
             name = editNameInput.text.toString().ifBlank { currentUser.name },
             email = editEmailInput.text.toString().ifBlank { currentUser.email },
@@ -439,7 +438,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Khi co uid that thi merge profile len Firestore.
+
         userRepository.updateUserProfile(currentUser.copy(uid = uid),
             onSuccess = {
                 refreshProfileUi()
@@ -471,7 +470,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun styleInlineRegisterText() {
-        // To mau rieng chu Register de giong mockup Figma.
+
         val fullText = getString(R.string.register_prompt)
         val registerWord = getString(R.string.register_word)
         val startIndex = fullText.indexOf(registerWord)
@@ -496,7 +495,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Login thanh cong thi vao app, sau do doc profile tu Firestore de do len UI.
+
         authRepository.login(
             email = email,
             password = password,
@@ -533,7 +532,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Register o day chi tao tai khoan Auth truoc.
-        // Sau khi tao xong se chuyen sang man Personal Information de nhap profile day du.
         authRepository.register(
             email = email,
             password = password,
@@ -618,7 +616,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearRegisterFields() {
-        // Clear form register sau khi tao xong de tranh mo lai con du lieu cu.
+
         registerNameInput.setText("")
         registerEmailInput.setText("")
         registerPasswordInput.setText("")
@@ -639,7 +637,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun completePersonalInfo() {
-        // Uu tien uid vua tao xong tu register; neu app da co session thi fallback current uid.
         val finalUid = pendingRegisterUid ?: authRepository.getCurrentUserId()
         if (finalUid == null) {
             Toast.makeText(this, getString(R.string.please_register_first), Toast.LENGTH_SHORT).show()
