@@ -709,58 +709,199 @@
         android:orientation="vertical"
         android:visibility="invisible">
 
-        <TextView
-            android:id="@+id/runTypeChip"
-            android:layout_width="wrap_content"
+        <!-- Top bar: GPS chip + run type -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="22dp"
-            android:background="@drawable/bg_chip_soft"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="8dp"
-            android:text="@string/run_type_easy" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="22dp"
+            android:paddingTop="16dp">
 
+            <!-- GPS Active chip -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chip_soft"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_gps" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/gps_active"
+                    android:textColor="@color/runna_text_primary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/runTypeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chip_soft"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="6dp"
+                android:text="@string/run_type_easy"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Map placeholder area -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_tracking_header"
             android:gravity="center"
             android:text="@string/live_route_map"
             android:textAlignment="center"
-            android:textColor="@color/runna_text_primary" />
-
-        <TextView
-            android:id="@+id/trackingTimerText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:gravity="center"
-            android:text="@string/timer_default"
-            android:textColor="@color/runna_text_primary"
-            android:textSize="42sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/trackingStatsText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:text="@string/tracking_stats_default"
             android:textColor="@color/runna_text_secondary" />
 
+        <!-- Stats card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="22dp">
+
+            <!-- Duration: large timer -->
+            <TextView
+                android:id="@+id/trackingTimerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/timer_default"
+                android:textColor="@color/runna_text_primary"
+                android:textSize="52sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/duration_label"
+                android:textColor="@color/runna_primary"
+                android:textSize="14sp" />
+
+            <!-- Horizontal stats row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <!-- Distance -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/trackingDistanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.30"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/distance_km_label"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Pace -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/trackingPaceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.33"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/pace_minkm_label"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Calories -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/trackingCaloriesText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="19"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/calories_label"
+                        android:textColor="@color/runna_text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Pause button -->
         <Button
             android:id="@+id/pauseRunButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginHorizontal="22dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/bg_button_primary"
             android:backgroundTint="@null"
+            android:drawableStart="@drawable/ic_pause"
+            android:drawablePadding="8dp"
+            android:gravity="center"
             android:text="@string/pause"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="17sp" />
     </LinearLayout>
 
     <!-- Popup màn pause/ tạm dừng -->
@@ -771,36 +912,122 @@
         android:background="@color/runna_overlay"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:padding="22dp"
         android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bottom_sheet"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="22dp">
 
+            <!-- Drag handle -->
+            <View
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_drag_handle" />
+
+            <!-- Run Paused title -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/run_paused"
                 android:textColor="@color/runna_text_primary"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/pauseStatsText"
+            <!-- Stats row: Time | Distance | Pace -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_card_soft"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="@string/pause_stats_default"
-                android:textColor="@color/runna_text_primary" />
+                android:orientation="horizontal"
+                android:padding="16dp">
 
+                <!-- Time -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pauseTimeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28:45"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/time_label"
+                        android:textColor="@color/runna_primary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Distance -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pauseDistanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5.2 km"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/distance_label"
+                        android:textColor="@color/runna_primary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Pace -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pausePaceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5:32"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/pace_label"
+                        android:textColor="@color/runna_primary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Resume button -->
             <Button
                 android:id="@+id/resumeRunButton"
                 android:layout_width="match_parent"
@@ -808,10 +1035,15 @@
                 android:layout_marginTop="18dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
+                android:drawableStart="@drawable/ic_play"
+                android:drawablePadding="8dp"
+                android:gravity="center"
                 android:text="@string/resume"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="17sp" />
 
+            <!-- Finish Run button -->
             <Button
                 android:id="@+id/finishRunButton"
                 android:layout_width="match_parent"
@@ -819,9 +1051,13 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_button_outline"
                 android:backgroundTint="@null"
+                android:drawableStart="@drawable/ic_stop"
+                android:drawablePadding="8dp"
+                android:gravity="center"
                 android:text="@string/finish_run"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/runna_primary"
+                android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -830,45 +1066,233 @@
         android:id="@+id/summaryScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_app_surface"
-        android:gravity="center_horizontal"
+        android:background="@color/runna_surface"
         android:orientation="vertical"
-        android:padding="22dp"
         android:visibility="invisible">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@drawable/bg_summary_header"
-            android:gravity="center"
-            android:text="@string/great_job"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/summaryStatsText"
+        <!-- Orange gradient header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/bg_card"
-            android:gravity="center"
-            android:padding="30dp"
-            android:text="@string/summary_stats_default"
-            android:textAlignment="center"
-            android:textColor="@color/runna_text_primary" />
+            android:background="@drawable/bg_summary_header"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            android:paddingBottom="30dp">
 
-        <Button
-            android:id="@+id/summaryDoneButton"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/great_job_title"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/you_completed_run"
+                android:textColor="#E0FFFFFF"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/bg_button_primary"
-            android:backgroundTint="@null"
-            android:text="@string/done"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <!-- Run Statistics card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_subtle"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/run_statistics"
+                        android:textColor="@color/runna_text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- Stats 2x2 grid -->
+                    <!-- Row 1: Duration + Distance -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <!-- Duration -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_soft"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/summaryDurationText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="28:45"
+                                android:textColor="@color/runna_text_primary"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/duration_label"
+                                android:textColor="@color/runna_text_secondary"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <!-- Distance -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_soft"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/summaryDistanceText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5.2"
+                                android:textColor="@color/runna_text_primary"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/distance_km_label"
+                                android:textColor="@color/runna_text_secondary"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2: Avg Pace + Calories -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <!-- Avg Pace -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_soft"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/summaryPaceText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5:32"
+                                android:textColor="@color/runna_text_primary"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/avg_pace_label"
+                                android:textColor="@color/runna_text_secondary"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <!-- Calories -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_soft"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/summaryCaloriesText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="338"
+                                android:textColor="@color/runna_text_primary"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/calories_label"
+                                android:textColor="@color/runna_text_secondary"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Chart placeholder -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_card_soft" />
+                </LinearLayout>
+
+                <!-- Done button -->
+                <Button
+                    android:id="@+id/summaryDoneButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:backgroundTint="@null"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <!-- Share Activity link -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/share_activity"
+                    android:textColor="@color/runna_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <!-- Popup hiện reset password nếu người dùng ấn quên mk -->

@@ -6,6 +6,7 @@
         <item name="colorSecondary">@color/runna_text_primary</item>
         <item name="colorSurface">@color/runna_surface</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="Theme.RunnaRunningTracker" parent="Base.Theme.RunnaRunningTracker" />

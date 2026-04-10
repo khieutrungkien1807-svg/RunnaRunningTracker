@@ -57,9 +57,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var beginRunButton: Button
     private lateinit var runTypeChip: TextView
     private lateinit var trackingTimerText: TextView
-    private lateinit var trackingStatsText: TextView
-    private lateinit var pauseStatsText: TextView
-    private lateinit var summaryStatsText: TextView
+    private lateinit var trackingDistanceText: TextView
+    private lateinit var trackingPaceText: TextView
+    private lateinit var trackingCaloriesText: TextView
+    private lateinit var pauseTimeText: TextView
+    private lateinit var pauseDistanceText: TextView
+    private lateinit var pausePaceText: TextView
+    private lateinit var summaryDurationText: TextView
+    private lateinit var summaryDistanceText: TextView
+    private lateinit var summaryPaceText: TextView
+    private lateinit var summaryCaloriesText: TextView
     private lateinit var homeWelcomeText: TextView
     private lateinit var profileInfoText: TextView
     private lateinit var recentActivityText: TextView
@@ -113,10 +120,18 @@ class MainActivity : AppCompatActivity() {
             val seconds = elapsedSeconds % 60
             val distance = 0.08 + (elapsedSeconds * 0.012)
             val calories = 6 + elapsedSeconds
+            val pace = if (distance > 0) String.format("%.2f", minutes.toDouble() / distance) else "0.00"
             trackingTimerText.text = String.format("%02d:%02d", minutes, seconds)
-            trackingStatsText.text = getString(R.string.tracking_stats_format, distance, calories)
-            pauseStatsText.text = getString(R.string.pause_stats_format, minutes, seconds, distance)
-            summaryStatsText.text = getString(R.string.summary_stats_format, minutes, seconds, distance, calories)
+            trackingDistanceText.text = String.format("%.2f", distance)
+            trackingPaceText.text = pace
+            trackingCaloriesText.text = calories.toString()
+            pauseTimeText.text = String.format("%02d:%02d", minutes, seconds)
+            pauseDistanceText.text = String.format("%.1f km", distance)
+            pausePaceText.text = pace
+            summaryDurationText.text = String.format("%02d:%02d", minutes, seconds)
+            summaryDistanceText.text = String.format("%.1f", distance)
+            summaryPaceText.text = pace
+            summaryCaloriesText.text = calories.toString()
             timerHandler.postDelayed(this, 1000)
         }
     }
@@ -186,9 +201,16 @@ class MainActivity : AppCompatActivity() {
         beginRunButton = findViewById(R.id.beginRunButton)
         runTypeChip = findViewById(R.id.runTypeChip)
         trackingTimerText = findViewById(R.id.trackingTimerText)
-        trackingStatsText = findViewById(R.id.trackingStatsText)
-        pauseStatsText = findViewById(R.id.pauseStatsText)
-        summaryStatsText = findViewById(R.id.summaryStatsText)
+        trackingDistanceText = findViewById(R.id.trackingDistanceText)
+        trackingPaceText = findViewById(R.id.trackingPaceText)
+        trackingCaloriesText = findViewById(R.id.trackingCaloriesText)
+        pauseTimeText = findViewById(R.id.pauseTimeText)
+        pauseDistanceText = findViewById(R.id.pauseDistanceText)
+        pausePaceText = findViewById(R.id.pausePaceText)
+        summaryDurationText = findViewById(R.id.summaryDurationText)
+        summaryDistanceText = findViewById(R.id.summaryDistanceText)
+        summaryPaceText = findViewById(R.id.summaryPaceText)
+        summaryCaloriesText = findViewById(R.id.summaryCaloriesText)
         homeWelcomeText = findViewById(R.id.homeWelcomeText)
         profileInfoText = findViewById(R.id.profileInfoText)
         recentActivityText = findViewById(R.id.recentActivityText)

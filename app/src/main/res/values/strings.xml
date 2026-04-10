@@ -36,6 +36,10 @@
     <string name="continue_label">Continue</string>
     <string name="total_distance_card">12.5 km\nTotal Distance</string>
     <string name="avg_pace_card">5:32\nAvg Pace</string>
+    <string name="this_week_label">This Week</string>
+    <string name="active_days_card">4 days\nActive Days</string>
+    <string name="total_runs_card">4 runs\nTotal Runs</string>
+    <string name="recent_activity_title">Recent Activity</string>
     <string name="recent_activity_text">Recent Activity\nEasy Run | 5.2 km | 28:45\nLong Run | 10.0 km | 58:30</string>
     <string name="choose_workout_type">Choose your workout type</string>
     <string name="easy_run_desc">Easy Run\nLight pace, comfortable breathing</string>
@@ -50,6 +54,14 @@
     <string name="profile_subtitle">Manage your personal running details</string>
     <string name="profile_info_format">%1$s\n%2$s\nAge %3$s | %4$s\nHeight %5$s cm | Weight %6$s kg</string>
     <string name="profile_info_sample">Nghi\nnghi@gmail.com\nAge 19 | Female\nHeight 165 cm | Weight 62 kg</string>
+    <string name="profile_name_placeholder">Name: Runner</string>
+    <string name="profile_age_placeholder">Age: 19</string>
+    <string name="profile_height_placeholder">Height: 165 cm</string>
+    <string name="profile_weight_placeholder">Weight: 62 kg</string>
+    <string name="profile_name_value">Name: %1$s</string>
+    <string name="profile_age_value">Age: %1$s</string>
+    <string name="profile_height_value">Height: %1$s cm</string>
+    <string name="profile_weight_value">Weight: %1$s kg</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="app_information">App Information</string>
     <string name="logout">Logout</string>
@@ -103,4 +115,83 @@
     <string name="profile_save_failed">Profile save failed: %1$s</string>
     <string name="load_profile_failed">Load profile failed: %1$s</string>
     <string name="please_register_first">Please register first</string>
+    <string name="welcome_back_home">Welcome back, %1$s!</string>
+    <string name="welcome_back_home_default">Welcome back, Runner!</string>
+    <string name="start_run_demo_message">Start run tapped. You can connect GPS tracking next.</string>
+    <!-- Profile Stats -->
+    <string name="overall_stats">Overall Stats</string>
+    <string name="total_runs_label">Total Runs</string>
+    <string name="total_distance_label">Total Distance</string>
+    <string name="total_time_label">Total Time</string>
+    <string name="avg_pace_label">Avg Pace</string>
+    <string name="total_runs_value">127</string>
+    <string name="total_distance_value">523.4 km</string>
+    <string name="total_time_value">48h 32m</string>
+    <string name="avg_pace_value">5:34 min/km</string>
+    <string name="settings">Settings</string>
+    <string name="app_settings">App Settings</string>
+    <!-- History details -->
+    <string name="easy_run_title">Easy Run</string>
+    <string name="long_run_title">Long Run</string>
+    <string name="interval_title">Interval</string>
+    <string name="walking_title">Walking</string>
+    <string name="today_0830">Today, 08:30</string>
+    <string name="yesterday_0715">Yesterday, 07:15</string>
+    <string name="mar23_1800">Mar 23, 18:00</string>
+    <string name="mar22_0645">Mar 22, 06:45</string>
+    <string name="mar21_1900">Mar 21, 19:00</string>
+    <string name="distance_label">Distance</string>
+    <string name="time_label">Time</string>
+    <string name="pace_label">Pace</string>
+    <!-- Tracking screen -->
+    <string name="gps_active">GPS Active</string>
+    <string name="duration_label">Duration</string>
+    <string name="distance_km_label">Distance (km)</string>
+    <string name="pace_minkm_label">Pace (min/km)</string>
+    <string name="calories_label">Calories</string>
+    <!-- Summary screen -->
+    <string name="great_job_title">Great Job!</string>
+    <string name="you_completed_run">You completed your easy run</string>
+    <string name="run_statistics">Run Statistics</string>
+    <string name="share_activity">Share Activity</string>
+    <string name="john_doe">John Doe</string>
+    <string name="john_email">john.doe@email.com</string>
+    <string name="age_label">Age</string>
+    <string name="gender_label">Gender</string>
+    <string name="height_label">Height</string>
+    <string name="weight_label">Weight</string>
+    
+    <!-- Challenges -->
+    <string name="challenges">Challenges</string>
+    <string name="challenges_subtitle">Join and compete with runners</string>
+    <string name="popular">Popular</string>
+    <string name="ending_soon">Ending Soon</string>
+    <string name="my_challenges">My Challenges</string>
+    
+    <string name="challenge_distance">DISTANCE</string>
+    <string name="challenge_speed">SPEED</string>
+    
+    <string name="join">Join</string>
+    <string name="joined">Joined</string>
+    <string name="participants_format">%1$s participants</string>
+    <string name="days_left">%1$d days left</string>
+    
+    <string name="your_progress">Your Progress</string>
+    <string name="to_go">%1$s km to go</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="top_10">Top 10</string>
+    
+    <string name="create_challenge">Create Challenge</string>
+    <string name="challenge_name">Challenge Name</string>
+    <string name="challenge_name_hint">e.g., Summer Marathon Training</string>
+    <string name="description">Description</string>
+    <string name="description_hint">Describe your challenge...</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="date_hint">mm/dd/yyyy</string>
+    <string name="distance_goal_km">Distance Goal (km)</string>
+    <string name="distance_goal_hint">e.g., 100</string>
+    
+    <string name="tip_title">Tip:</string>
+    <string name="create_challenge_tip">Create challenges that are achievable yet motivating. Consider your audience and set realistic goals to encourage participation.</string>
 </resources>
