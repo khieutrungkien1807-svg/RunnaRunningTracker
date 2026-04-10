@@ -32,6 +32,7 @@ class UserRepository(
     }
 
     fun loadUserProfile(
+
         uid: String,
         onSuccess: (User) -> Unit,
         onFailure: (String) -> Unit
@@ -48,5 +49,24 @@ class UserRepository(
                 onSuccess(User.fromMap(uid, document.data))
             }
             .addOnFailureListener { error -> onFailure(error.message ?: "Unknown load profile error") }
+    }fun getUser(
+        uid: String,
+        callback: (User?) -> Unit
+    ) {
+        firestore.collection(User.COLLECTION_USERS)
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+
+                if (document != null && document.data != null) {
+                    val user = User.fromMap(uid, document.data)
+                    callback(user)
+                } else {
+                    callback(null)
+                }
+            }
+            .addOnFailureListener {
+                callback(null)
+            }
     }
 }

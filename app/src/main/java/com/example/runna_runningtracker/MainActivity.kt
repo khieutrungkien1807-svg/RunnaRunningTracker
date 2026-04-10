@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+
 class MainActivity : AppCompatActivity() {
 
     // Nhom view chinh: moi man trong prototype dang duoc mo/tat bang visibility.
@@ -137,6 +138,14 @@ class MainActivity : AppCompatActivity() {
         setupProfilePickers()
         styleInlineRegisterText()
         bindActions()
+        val uid = authRepository.getCurrentUserId() ?: ""
+        if (uid.isNotEmpty()) {
+            userRepository.loadUserProfile(uid, onSuccess = { user ->
+                runOnUiThread {
+                    homeWelcomeText.text = "Welcome back, ${user.name}"
+                }
+            }, onFailure = { /* xử lý lỗi nếu cần */ })
+        }
         selectSection(Section.HOME)
         selectRunType(getString(R.string.run_type_easy))
         checkExistingSession()
